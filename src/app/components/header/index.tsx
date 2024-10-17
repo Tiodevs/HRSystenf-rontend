@@ -50,8 +50,6 @@ export function Header() {
     getUser();
   }, []);
 
-  console.log(user)
-
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
