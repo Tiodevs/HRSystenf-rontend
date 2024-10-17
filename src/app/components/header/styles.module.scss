@@ -1,0 +1,114 @@
+.headerContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 30px;
+  background-color: var(--preto2);
+  border-radius: 0px;
+  width: 300px;
+  height: 100vh;
+}
+
+.user{
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 15px;
+
+  h1{
+    font-size: 16px;
+  }
+
+  p{
+    font-size: 12px;
+  }
+
+  color: var(--branco);
+
+  .imgPerson{
+    border: none;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  nav {
+    margin: 40px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    p{
+      color: var(--branco);
+    }
+
+
+    a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color .8s;
+      width: 100%;
+
+      &:hover {
+        color: var(--main);
+      }
+    }
+
+    .active {
+      background-color: var(--azul2);
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      padding: 12px;
+      padding-left: 30px;
+      border-radius: 0px 8px 8px 0px;
+      stroke: #000000;
+      gap: 10px;
+
+      border-left: 5px solid var(--azul);
+
+      width: 100%;
+
+      &:hover {
+        transform: scale(1.01);
+      }
+    }
+
+    .link {
+      background-color: none;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      padding: 12px;
+      padding-left: 30px;
+      border-radius: 8px;
+      stroke: #000000;
+      gap: 10px;
+
+      width: 100%;
+
+      &:hover {
+        transform: scale(1.01);
+      }
+    }
+
+    button {
+      border: 0;
+      background: transparent;
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+
+  }
+}
