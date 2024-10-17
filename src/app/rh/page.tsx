@@ -53,6 +53,24 @@ export default function Adm() {
         router.push(`/rh/profile/${userId}`);
     };
 
+    // Função para redirecionar para a página de profile
+    const handleActiveUser = async (userId: string) => {
+        try {
+            const token = getCookiesClient();
+
+            const response = await api.post("/users/edit",{
+                user_id: userId
+            }, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+
+            setRegister(!register)
+
+        } catch (error) {
+            console.error("Erro ao carregar o usuário:", error);
+        }
+    };
+
 
     return (
         <div>
@@ -93,9 +111,9 @@ export default function Adm() {
                             <p className={styles.rowTipo}>{item.role}</p>
                             <p className={styles.rowAtivo}>{item.active ? "Ativo" : "Dasativo"}</p>
                             <div className={styles.rowbtn}>
-                                <Eye size={24} color="#FFFF" onClick={() => handleViewProfile(item.id)} />
-                                <UserRoundPen size={24} color="#FFFF" />
-                                <FileLock2 size={24} color="#FFFF" />
+                                <Eye size={24} color="#FFFF" style={{ cursor: 'pointer' }} onClick={() => handleViewProfile(item.id)} />
+                                <UserRoundPen size={24} color="#FFFF" style={{ cursor: 'pointer' }}/>
+                                <FileLock2 size={24} color="#FFFF" style={{ cursor: 'pointer' }} onClick={() => handleActiveUser(item.id)}/>
                             </div>
                         </div>)) : <></>}
 
