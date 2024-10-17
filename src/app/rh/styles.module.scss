@@ -14,37 +14,75 @@
     padding: 30px;
     border-radius: 16px;
 
-    .person{
-        display: flex;
-        justify-content: space-between;
+    .imgPerson{
+        border-radius: 100%;
     }
 
-    .infoPerson{
-        display: flex;
-        gap: 20px;
-        align-items: center;
+    button{
+        border: none;
+        background-color: var(--azul);
+        padding: 15px;
+        border-radius: 10px;
+        color: var(--branco);
+        margin-bottom: 30px;
+    }
 
-        h1{
-            font-size: 20px;
-            font-weight: bolder;
-        }
+    .tabela{
+        height: 100%;
+        border: 1px solid var(--cinza2);
+        border-radius: 8px;
+        padding: 30px;
 
-        .infoCursePerson{
+        .tabelaheader{
             display: flex;
-            gap: 10px;
-            margin-top: 5px;
-            p{
-                font-size: 16px;
-                color: #8F8F8F;
+            align-items: center;
+            padding: 0px 0px 20px 0px;
+            border-bottom: 1px solid var(--cinza2) ;
+            .rowNome{
+                width: 50%;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .rowTipo{
+                min-width: 150px;
+            }
+            .rowAtivo{
+                min-width: 150px;
+            }
+            .rowbtn{
+                min-width: 150px;
             }
         }
+
+        .tabelarow{
+            display: flex;
+            align-items: center;
+            padding: 20px 0px;
+            border-bottom: 1px solid var(--cinza2) ;
+            .rowNome{
+                width: 50%;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .rowTipo{
+                min-width: 150px;
+            }
+            .rowAtivo{
+                min-width: 150px;
+            }
+            .rowbtn{
+                min-width: 150px;
+                display: flex;
+                gap: 15px;
+            }
+
+            &:last-child{
+                border: none;
+            }
+        }
+        
     }
 
-    .line{
-        width: 100%;
-        height: 2px;
-        background-color: #DFDFDF;
-        border-radius: 10px;
-        margin-top: 20px;
-    }
 }
