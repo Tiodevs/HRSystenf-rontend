@@ -1,37 +1,67 @@
+'use client'
+
 import Image from "next/image"
 import Link from "next/link"
 import styles from '../../page.module.scss'
 // import LogoImg from '/Logo.svg'
 import { api } from "../../services/api"
 import { redirect } from "next/navigation"
+import { useState, ChangeEvent } from "react"
 
 export default function Signup() {
 
-    async function handleRegister(formData: FormData) {
-        "use server"
+    const [image, setImage] = useState<File>()
+    const [previewImage, setPreviewImage] = useState("")
+    const [loading, setLoading] = useState<boolean>(false);
 
-        // 
+    async function handleRegister(formData: FormData) {
+        
+        setLoading(!loading)
 
         const name = formData.get("name")
         const email = formData.get("email")
         const password = formData.get("password")
+        const phoneNumber = formData.get("phoneNumber")
+        const role = formData.get("role")
 
-        if (name === "" || email === "" || password === "") {
+        if (name === "" || email === "" || password === "" || phoneNumber === "" || role === "") {
             console.log("Preencha todos os campos")
             return
         }
 
+        const data = new FormData()
+
+        data.append("name", name as string)
+        data.append("email", email as string)
+        data.append("password", password as string)
+        data.append("phoneNumber", phoneNumber as string)
+        data.append("role", role as string)
+        data.append("photourl", image as any)
+
+        console.log(data)
+
         try {
-            await api.post("/users", {
-                name: name,
-                email: email,
-                password: password
-            })
+            await api.post("/users", data)
         } catch (err) {
             console.log("error: ", err)
         }
 
-        redirect("/adm")
+        redirect("/rh")
+    }
+
+
+    function handleFile(e: ChangeEvent<HTMLInputElement>) {
+        if (e.target.files && e.target.files[0]) {
+            const image = e.target.files[0];
+
+            if (image.type !== "image/jpeg" && image.type !== "image/png") {
+                return;
+            }
+
+            setImage(image);
+            setPreviewImage(URL.createObjectURL(image))
+
+        }
     }
 
     return (
@@ -70,6 +100,30 @@ export default function Signup() {
                             placeholder="Escolha a sua senha"
                             className={styles.input}
                         />
+                        <input
+                            type="text"
+                            required
+                            name="phoneNumber"
+                            placeholder="Número"
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            required
+                            name="role"
+                            placeholder="Cargo"
+                            className={styles.input}
+                        />
+                        <label className={styles.labelImage}>
+                            <p>Escolha uma foto: <br /></p>
+                            <input
+                                type="file"
+                                accept="image/png, image/jpeg"
+                                name="photourl"
+                                onChange={handleFile}
+                                required
+                            />
+                        </label>
 
                         <button type="submit">
                             Criar conta

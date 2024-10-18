@@ -50,7 +50,7 @@ export default function Adm() {
 
     // Função para redirecionar para a página de profile
     const handleViewProfile = (userId: string) => {
-        router.push(`/rh/profile/${userId}`);
+        router.push(`/rh/perfil/${userId}`);
     };
 
     // Função para redirecionar para a página de profile
@@ -112,7 +112,6 @@ export default function Adm() {
                             <p className={styles.rowAtivo}>{item.active ? "Ativo" : "Dasativo"}</p>
                             <div className={styles.rowbtn}>
                                 <Eye size={24} color="#FFFF" style={{ cursor: 'pointer' }} onClick={() => handleViewProfile(item.id)} />
-                                <UserRoundPen size={24} color="#FFFF" style={{ cursor: 'pointer' }}/>
                                 <FileLock2 size={24} color="#FFFF" style={{ cursor: 'pointer' }} onClick={() => handleActiveUser(item.id)}/>
                             </div>
                         </div>)) : <></>}

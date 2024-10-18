@@ -1,0 +1,115 @@
+.main{
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 16px;
+
+    .imgPerson{
+        border-radius: 10px;
+    }
+
+    button{
+        border: none;
+        background-color: var(--azul);
+        padding: 15px;
+        border-radius: 10px;
+        color: var(--branco);
+        margin-bottom: 30px;
+    }
+
+    .tabela{
+        height: 100%;
+        border: 1px solid var(--cinza2);
+        border-radius: 8px;
+        padding: 30px;
+
+        .rowheader{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--cinza2);
+
+            div{
+                display: flex;
+                justify-content: space-between;
+                align-items: center; 
+                gap: 30px;
+                div{
+                    flex-direction: column;
+                    justify-content: start;
+                    align-items: start;
+                    gap: 2px;
+                }
+            }
+        }
+
+        .rowinfos{
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 0px;
+            .cardinfo{
+                width: 23%;
+                h2{
+                    color: var(--cinza);
+                    font-size: 14px;
+                    font-weight: normal;
+                }
+                p{
+                    font-size: 16px;
+                    font-weight: normal;
+                    border-bottom: 1px solid var(--cinza2);
+                    padding: 10px 0px;
+                }
+            }
+        }
+
+        .tabelaheader{
+            display: flex;
+            align-items: center;
+            padding: 0px 0px 20px 0px;
+            border-bottom: 1px solid var(--cinza2) ;
+            .rowNome{
+                width: 50%;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .rowTipo{
+                width: 25%;
+            }
+        }
+
+        .tabelarow{
+            display: flex;
+            align-items: center;
+            padding: 20px 0px;
+            border-bottom: 1px solid var(--cinza2) ;
+            .rowNome{
+                width: 50%;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .rowTipo{
+                width: 25%;
+            }
+
+            &:last-child{
+                border: none;
+            }
+        }
+        
+    }
+
+}
