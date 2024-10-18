@@ -22,7 +22,7 @@ export function Header() {
 
   // Verifica se a rota é ativa
   const pathname = usePathname(); // Pega a rota ativa
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) => pathname.startsWith(path);
 
   async function handleLogout() {
     deleteCookie("session", { path: "/" })
@@ -79,14 +79,17 @@ export function Header() {
           </Link>
 
           <button className={styles.link} onClick={() => handleLogout()}>
-              <LogOutIcon size={24} color="#FFFF" />
-              <p>Sair da conta</p>
+            <LogOutIcon size={24} color="#FFFF" />
+            <p>Sair da conta</p>
           </button>
 
         </nav>
 
 
       </div>
+
+      {user && <Link href={`/rh/perfil/${user.id}`}>
+
         <div className={styles.user}>
           <Image
             alt="Logo Sujeito Pizza"
@@ -98,8 +101,10 @@ export function Header() {
             className={styles.imgPerson}
           />
 
-          {user && <div><h1>{user.name}</h1><p>{user.role}</p></div>}
+          <div><h1>{user.name}</h1><p>{user.role}</p></div>
         </div>
+      </Link>}
+
     </header>
   )
 }

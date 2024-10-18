@@ -77,8 +77,8 @@ export default function Adm() {
                 <Header />
                 <div className={styles.content}>
                     <Title
-                        name01="Adicione, remova e edite informações"
-                        name02="Toda a esquipe"
+                        name01="Salve o seus pontos aqui"
+                        name02="Registro"
                     />
                     <div className={styles.tabela}>
 
