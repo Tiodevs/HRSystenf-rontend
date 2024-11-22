@@ -90,7 +90,8 @@ export default function Adm() {
 
                         <div className={styles.tabelaheader}>
                             <p className={styles.rowNome}>Nome</p>
-                            <p className={styles.rowTipo}>Tipo</p>
+                            <p className={styles.rowTipo}>Equipe</p>
+                            <p className={styles.rowTipo}>Contrato</p>
                             <p className={styles.rowAtivo}>Status</p>
                             <p className={styles.rowbtn}>Ações</p>
                         </div>
@@ -109,6 +110,7 @@ export default function Adm() {
                                 <p>{item.name}</p>
                             </div>
                             <p className={styles.rowTipo}>{item.role}</p>
+                            <p className={styles.rowTipo}>{item.contrato}</p>
                             <p className={styles.rowAtivo}>{item.active ? "Ativo" : "Dasativo"}</p>
                             <div className={styles.rowbtn}>
                                 <Eye size={24} color="#FFFF" style={{ cursor: 'pointer' }} onClick={() => handleViewProfile(item.id)} />
