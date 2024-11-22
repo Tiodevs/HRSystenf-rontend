@@ -23,6 +23,11 @@ export default function Signup() {
         const password = formData.get("password")
         const phoneNumber = formData.get("phoneNumber")
         const role = formData.get("role")
+        const contrato = formData.get("contrato")
+        const cidade = formData.get("cidade")
+        const nascimento = formData.get("nascimento")
+        const RG = formData.get("RG")
+        const CPF = formData.get("CPF")
 
         if (name === "" || email === "" || password === "" || phoneNumber === "" || role === "") {
             console.log("Preencha todos os campos")
@@ -36,6 +41,11 @@ export default function Signup() {
         data.append("password", password as string)
         data.append("phoneNumber", phoneNumber as string)
         data.append("role", role as string)
+        data.append("contrato", contrato as string)
+        data.append("cidade", cidade as string)
+        data.append("nascimento", nascimento as string)
+        data.append("RG", RG as string)
+        data.append("CPF", CPF as string)
         data.append("photourl", image as any)
 
         console.log(data)
@@ -112,6 +122,41 @@ export default function Signup() {
                             required
                             name="role"
                             placeholder="Cargo"
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            required
+                            name="cidade"
+                            placeholder="Cidade"
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            required
+                            name="contrato"
+                            placeholder="Tipo de contrato"
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            required
+                            name="nascimento"
+                            placeholder="Data de nascimento"
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            required
+                            name="CPF"
+                            placeholder="CPF"
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            required
+                            name="RG"
+                            placeholder="RG"
                             className={styles.input}
                         />
                         <label className={styles.labelImage}>
