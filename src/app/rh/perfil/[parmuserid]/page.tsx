@@ -116,10 +116,25 @@ export default function Profile({ params }: Props) {
                                 <h2>Status</h2>
                                 <p>{user.active ? "Ativo" : "Desativado"}</p>
                             </div>
-
                             <div className={styles.cardinfo}>
-                                <h2>Data de criação</h2>
-                                <p>{formatDate(user.createdAt)}</p>
+                                <h2>Cidade</h2>
+                                <p>{user.cidade}</p>
+                            </div>
+                            <div className={styles.cardinfo}>
+                                <h2>Contrato</h2>
+                                <p>{user.contrato}</p>
+                            </div>
+                            <div className={styles.cardinfo}>
+                                <h2>Data de nascimento</h2>
+                                <p>{user.nascimento}</p>
+                            </div>
+                            <div className={styles.cardinfo}>
+                                <h2>RG</h2>
+                                <p>{user.RG}</p>
+                            </div>
+                            <div className={styles.cardinfo}>
+                                <h2>CPF</h2>
+                                <p>{user.CPF}</p>
                             </div>
                         </div>
 
