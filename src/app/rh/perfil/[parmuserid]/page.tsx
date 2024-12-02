@@ -25,6 +25,7 @@ export default function Profile({ params }: Props) {
 
     console.log("Parms", decodedId)
     const [user, setUser] = useState<any>(null);
+    const [attendence, setAttendence] = useState<any>(null);
     const [urlUser, setUrlUser] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -42,8 +43,20 @@ export default function Profile({ params }: Props) {
 
                 const resUser = resallUser.data
 
-                const filteruser = resUser.filter((item:any) => item.id === decodedId)
+                const filteruser = resUser.filter((item: any) => item.id === decodedId)
 
+                const resAttendance = await api.post("/attendance/time", {
+                    userId: filteruser[0].id,
+                    contract: filteruser[0].contrato
+                }, {
+                    headers: { Authorization: `Bearer ${token}` },
+                })
+
+                console.log(filteruser[0].id)
+                console.log(filteruser[0].contrato)
+                console.log(resAttendance.data)
+
+                setAttendence(resAttendance.data)
 
                 setUrlUser(filteruser[0].profilePhoto);
                 setUser(filteruser[0]);
@@ -135,6 +148,14 @@ export default function Profile({ params }: Props) {
                             <div className={styles.cardinfo}>
                                 <h2>CPF</h2>
                                 <p>{user.CPF}</p>
+                            </div>
+                        </div>
+
+                        <div className={styles.rowinfos}>
+                            <div>
+                                <h2>Quantidade de horas trabalhas nos ultimos 30 dias</h2>
+                                <p>{attendence.totalHoras} horas e {attendence.totalMinutos} minutos</p>
+                                {attendence.inconsistencias.length >= 1 && <p>Tem inconsistencias</p>}
                             </div>
                         </div>
 

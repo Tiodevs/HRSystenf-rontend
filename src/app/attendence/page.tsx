@@ -40,6 +40,8 @@ export default function Adm() {
         getUser();
     }, [register])
 
+    console.log(user)
+
     // Função para formatar a data
     const formatDate = (date: string) => {
         return dayjs(date).format('DD/MM/YY - hh:mm A'); // Exemplo: 17/10/24 - 03:30 PM
@@ -82,19 +84,24 @@ export default function Adm() {
                     />
                     <div className={styles.tabela}>
 
+                        {user && 
                         <form action={handleRegister}>
                             <select name="type" required className={styles.select}>
                                 <option value="">Selecione um tipo</option>
-                                <option value="Entrada geral">Entrada geral</option>
-                                <option value="Entrada almoço">Entrada almoço</option>
-                                <option value="Saída do almoço">Saída do almoço</option>
-                                <option value="Saída geral">Saída geral</option>
+                                {user.contrato == "PJ" ? <option value="Começo">Começo</option> : <></>}
+                                {user.contrato == "PJ" ? <option value="Fim">Fim</option> : <></>}
+                                                               {user.contrato == "CLT" ? <option value="Entrada geral">Entrada geral</option> : <></>}
+                                {user.contrato == "CLT" ? <option value="Entrada almoço">Entrada almoço</option> : <></>}
+                                {user.contrato == "CLT" ? <option value="Saída do almoço">Saída do almoço</option> : <></>}
+                                {user.contrato == "CLT" ? <option value="Saída geral">Saída geral</option> : <></>}
                             </select>
-
-                            <button type="submit">
+          
+                            <button type="submit">                                                                e="submit">
                                 Registrar
                             </button>
-                        </form>
+                        </form>}
+
+                        
 
                         <div className={styles.tabelaheader}>
                             <p className={styles.rowNome}>Nome</p>
