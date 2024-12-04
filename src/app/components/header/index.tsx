@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { usePathname } from "next/navigation";
 // import logoImg from '/public/Logo.svg'
-import { BellElectric, BookUser, LogOutIcon } from 'lucide-react'
+import { BellElectric, BookUser, Calendar, LogOutIcon } from 'lucide-react'
 import { deleteCookie } from 'cookies-next'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
@@ -72,6 +72,11 @@ export function Header() {
             <BookUser size={24} color="#FFFF" />
             <p>Equipe</p>
           </Link>}
+
+          <Link className={isActive("/calendar") ? styles.active : styles.link} href="/calendar">
+            <Calendar size={24} color="#FFFF" />
+            <p>Calendário</p>
+          </Link>
 
           <Link className={isActive("/attendence") ? styles.active : styles.link} href="/attendence">
             <BellElectric size={24} color="#FFFF" />

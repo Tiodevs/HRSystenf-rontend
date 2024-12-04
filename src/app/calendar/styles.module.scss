@@ -1,0 +1,96 @@
+.main{
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 16px;
+
+    .imgPerson{
+        border-radius: 100%;
+    }
+
+    form{
+        display: flex;
+        gap: 20px;
+        padding-bottom: 30px;
+
+        .select{
+            border: none;
+            background-color: var(--preto);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--cinza2);
+            color: var(--branco);
+        }
+        .input{
+            border: none;
+            background-color: var(--preto);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--cinza2);
+            color: var(--branco);
+        }
+
+        button{
+            border: none;
+            background-color: var(--azul);
+            padding: 15px;
+            border-radius: 10px;
+            color: var(--branco);
+        }
+    }
+
+    .tabela{
+        height: 100%;
+        border: 1px solid var(--cinza2);
+        border-radius: 8px;
+        padding: 30px;
+
+        .tabelaheader{
+            display: flex;
+            align-items: center;
+            padding: 0px 0px 20px 0px;
+            border-bottom: 1px solid var(--cinza2) ;
+            .rowNome{
+                width: 30%;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .rowTipo{
+                width: 15%;
+            }
+        }
+
+        .tabelarow{
+            display: flex;
+            align-items: center;
+            padding: 20px 0px;
+            border-bottom: 1px solid var(--cinza2) ;
+            .rowNome{
+                width: 30%;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .rowTipo{
+                width: 15%;
+            }
+
+            &:last-child{
+                border: none;
+            }
+        }
+        
+    }
+
+}
