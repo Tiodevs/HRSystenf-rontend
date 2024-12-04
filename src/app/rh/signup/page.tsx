@@ -23,6 +23,7 @@ export default function Signup() {
         const password = formData.get("password")
         const phoneNumber = formData.get("phoneNumber")
         const role = formData.get("role")
+        const modality = formData.get("modality")
         const contrato = formData.get("contrato")
         const cidade = formData.get("cidade")
         const nascimento = formData.get("nascimento")
@@ -41,6 +42,7 @@ export default function Signup() {
         data.append("password", password as string)
         data.append("phoneNumber", phoneNumber as string)
         data.append("role", role as string)
+        data.append("Modality", modality as string)
         data.append("contrato", contrato as string)
         data.append("cidade", cidade as string)
         data.append("nascimento", nascimento as string)
@@ -122,6 +124,13 @@ export default function Signup() {
                             required
                             name="role"
                             placeholder="Cargo"
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            required
+                            name="modality"
+                            placeholder="Modalidade"
                             className={styles.input}
                         />
                         <input

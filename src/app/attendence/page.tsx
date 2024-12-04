@@ -96,9 +96,11 @@ export default function Adm() {
                                 {user.contrato == "CLT" ? <option value="Saída geral">Saída geral</option> : <></>}
                             </select>
           
-                            <button type="submit">                                                                e="submit">
+          
+                            <button type="submit">
                                 Registrar
-                            </button>
+                            </button>                                                            
+                                
                         </form>}
 
                         

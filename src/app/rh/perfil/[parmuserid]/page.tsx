@@ -52,13 +52,10 @@ export default function Profile({ params }: Props) {
                     headers: { Authorization: `Bearer ${token}` },
                 })
 
-                console.log(filteruser[0].id)
-                console.log(filteruser[0].contrato)
-                console.log(resAttendance.data)
-
                 setAttendence(resAttendance.data)
 
                 setUrlUser(filteruser[0].profilePhoto);
+                console.log(filteruser[0])
                 setUser(filteruser[0]);
 
                 console.log(filteruser)
@@ -148,6 +145,10 @@ export default function Profile({ params }: Props) {
                             <div className={styles.cardinfo}>
                                 <h2>CPF</h2>
                                 <p>{user.CPF}</p>
+                            </div>
+                            <div className={styles.cardinfo}>
+                                <h2>Modality</h2>
+                                <p>{user.Modality}</p>
                             </div>
                         </div>
 
