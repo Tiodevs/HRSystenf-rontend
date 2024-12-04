@@ -9,36 +9,47 @@ import { api } from "../services/api";
 import { getCookiesClient } from "@/lib/cookieClient";
 import { useEffect, useState } from "react";
 import dayjs from 'dayjs'; // Importando a biblioteca Day.js
+import { title } from "process";
 
 export default function Adm() {
 
     const [user, setUser] = useState<any>(null);
+    const [events, setEvents] = useState<any>(null);
     const [urlUser, setUrlUser] = useState("");
     const [loading, setLoading] = useState(false);
     const [register, setRegister] = useState(false);
 
 
     useEffect(() => {
-
         const token = getCookiesClient();
-
+      
         async function getUser() {
-            try {
-                const response = await api.get("/me", {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-                setUrlUser(response.data.profilePhoto);
-                setUser(response.data);
-                setLoading(true)
-            } catch (error) {
-                console.error("Erro ao carregar o usuário:", error);
-            }
+          try {
+            const response = await api.get("/me", {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+      
+            const userData = response.data; // Dados do usuário
+            setUser(userData);
+      
+            const events = await api.get("/presenceday", {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+      
+            const eventsfilter = events.data.filter((item: any) => item.user.id === userData.id); // Use userData diretamente
+            setEvents(eventsfilter);
+
+            console.log('Usuário carregado:', user);
+            console.log('Eventos carregados:', events.data);
+      
+            setLoading(true);
+          } catch (error) {
+            console.error("Erro ao carregar o usuário:", error);
+          }
         }
-
-
-
+      
         getUser();
-    }, [register])
+      }, [register]);
 
     console.log(user)
 
@@ -50,6 +61,9 @@ export default function Adm() {
     async function handleRegister(formData: FormData) {
 
         const type = formData.get("type")
+        const description = formData.get("description")
+        const data = formData.get("data")
+        const name = formData.get("name")
 
         const token = getCookiesClient();
 
@@ -57,14 +71,30 @@ export default function Adm() {
             console.log("Selecione um tipo de entrada");
             return;
         }
+        if (!name) {
+            console.log("Nome não selecionado");
+            return;
+        }
+        if (!description) {
+            console.log("Descrição não selecionado");
+            return;
+        }
+        if (!data) {
+            console.log("Data não selecionado");
+            return;
+        }
 
         try {
-            await api.post("/attendance", {
+            await api.post("/presenceday", {
                 userId: user.id,
-                type: type
+                type: type,
+                day: data,
+                description: description,
+                title: title
             }, {
                 headers: { Authorization: `Bearer ${token}` },
             })
+
             setRegister(!register);
         } catch (err) {
             console.log("error: ", err)
@@ -87,7 +117,7 @@ export default function Adm() {
                         {user &&
                             <form action={handleRegister}>
 
-                                <input name="Nome" placeholder="Nome" type="text" className={styles.input}/>
+                                <input name="name" placeholder="Nome" type="text" className={styles.input}/>
 
                                 <select name="type" required className={styles.select}>
                                     <option  value="">Selecione um tipo</option>
@@ -96,9 +126,9 @@ export default function Adm() {
                                     <option value="Começo">Remoto</option>
                                 </select>
 
-                                <input name="Data" placeholder="Data" type="date" className={styles.input}/>
+                                <input name="data" placeholder="Data" type="date" className={styles.input}/>
 
-                                <input name="Descrição" placeholder="Descrição" type="text" className={styles.input}/>
+                                <input name="description" placeholder="Descrição" type="text" className={styles.input}/>
 
                                 <button type="submit">
                                     Adicionar
@@ -115,13 +145,13 @@ export default function Adm() {
                             <p className={styles.rowTipo}>Descrição</p>
                         </div>
 
-                        {loading ? (user && user.Attendance.map((item: any) => <div className={styles.tabelarow}>
+                        {loading ? (events && events.map((item: any) => <div className={styles.tabelarow}>
                             <div className={styles.rowNome}>
-                                <p>{user.name}</p>
+                                <p>{item.user.name}</p>
                             </div>
                             <p className={styles.rowTipo}>{item.type}</p>
-                            <p className={styles.rowTipo}>{formatDate(item.createdAt)}</p>
-                            <p className={styles.rowTipo}>Teste</p>
+                            <p className={styles.rowTipo}>{formatDate(item.day)}</p>
+                            <p className={styles.rowTipo}>{item.description}</p>
                         </div>)) : <></>}
 
                     </div>
